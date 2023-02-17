@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-
 // 
 class Edges {
   public:
@@ -23,10 +22,20 @@ class Edges {
 	void setWeight(int weight){
     	this->weight = weight;
 	}
+	
+	void initialize(numNodes){      // hàm tao mot graph trong (graph toan 0)
+		edges.resize(numNodes);
+		for (int i=0;i<numNodes;i++){
+			edges[i].resize(numNodes);
+		}
+	}
+	
 	private:
 		int node1;
     	int node2;
     	int weight;
+    	vector<vector<int>> edges;
+    	
 };
 
 int main()

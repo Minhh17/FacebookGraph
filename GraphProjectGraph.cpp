@@ -2,7 +2,12 @@
 #include <vector>
 using namespace std;
 
-class Graph {
+/////
+
+
+/////
+
+class Graph::Edges {
 	public:
 		void addNode(string name, string dob, string email, string phone) {
 			node = new Node(name, id, dob, email, phone);
@@ -12,11 +17,11 @@ class Graph {
 		void addEdge(int fromId, int toId, weight){
 			edges[fromId][toId] = weight;
 		}
-//		void removeNode(int id)
-//      void removeEdge(int id)
+
+
 	private:
 		vector<Node> nodes;
-		int edges[100][100];
+		
 };
 
 
