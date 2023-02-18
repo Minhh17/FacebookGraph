@@ -1,6 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 vector<vector<int>> edges;
 
@@ -19,7 +17,6 @@ class Node {
 		string getPhone();
 		void setPhone(string phone);
 
-		
 	private:
 		string name;
 		int id;
@@ -64,6 +61,7 @@ class Node {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Edges {
   public:
+  	Edges();
     Edges(int node1, int node2, int weight) {
       this->node1 = node1;
       this->node2 =node2;
@@ -83,21 +81,17 @@ class Edges {
     	this->weight = weight;
 	}
 	
-	void initialize(int numNodes){      // hàm tao mot graph trong (graph toan 0)
+	void initialize(int numNodes){      // hàm tao mot do thi trong khong (graph toan 0)
 		edges.resize(numNodes);
 		for (int i=0;i<numNodes;i++){
 			edges[i].resize(numNodes);
-		}
-		
+		}	
 	}
 
-	
 	private:
 		int node1;
     	int node2;
     	int weight;
-    	
-    	
 };
 /////////////////////////////////////////////////////////////////////////////////////////////////
 class Graph:Node {
@@ -130,5 +124,18 @@ class Graph:Node {
 	};	
 int main()
 {
+	Node node ;
+	Graph graph;
+	Edges edges;
+	graph.addNode("Minh",17,"1710","minbs","0888");
+	graph.addNode("My",18,"1703","ansn","09380");
+	edges.initialize(2);
+	graph.addEdge(graph.getIndex(17),graph.getIndex(18), 100);
 	return 0;
 }
+
+
+
+
+
+

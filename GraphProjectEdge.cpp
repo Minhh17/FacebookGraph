@@ -13,6 +13,7 @@ class Edges {
     int getNode1() {return node1;};
     int getNode2() {return node2;};
     int getWeight() {return weight;};
+    
     void setNode1(int node1){
     	this->node1 = node1;
 	}
@@ -27,9 +28,9 @@ class Edges {
 		edges.resize(numNodes);
 		for (int i=0;i<numNodes;i++){
 			edges[i].resize(numNodes);
-		}
-		
+		}	
 	}
+	
 
 	
 	private:
