@@ -30,7 +30,7 @@ class Edges {
 		}
 		
 	}
-	getIndex
+
 	
 	private:
 		int node1;
