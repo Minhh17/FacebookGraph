@@ -24,6 +24,7 @@ class Node {
 		string dob;
 		string email;
 		string phone;
+		vector<Node> friendList;
 
 };
 //

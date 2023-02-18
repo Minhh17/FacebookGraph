@@ -28,7 +28,9 @@ class Edges {
 		for (int i=0;i<numNodes;i++){
 			edges[i].resize(numNodes);
 		}
+		
 	}
+	getIndex
 	
 	private:
 		int node1;
