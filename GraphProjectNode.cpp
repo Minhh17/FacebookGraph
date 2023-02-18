@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
+vector<vector<int>> edges;
 
 class Node {
 	public:
@@ -10,7 +12,7 @@ class Node {
 		void setName(string name);
 		int getId();
 		void setId(int id);
-		string getDob();			// get va set gtri private
+		string getDob();			
 		void setDob(string dob);
 		string getEmail();
 		void setEmail(string email);
@@ -24,20 +26,21 @@ class Node {
 		string dob;
 		string email;
 		string phone;
-		vector<Node> friendList;
+		vector<Node> friendList; 
+		
 
 };
-//
+
 	Node::Node() {}
 	Node::Node(string name, int id, string dob, string email, string phone)
 	{
 		this->name = name;
 		this->id = id;									
-		this->dob = dob;			// khoi tao 
+		this->dob = dob;			
 		this->email = email;
 		this->phone = phone;
 	}
-//
+
 	string Node::getName() {return name;}
 	int Node::getId() {return id;}
 	string Node::getDob() {return dob;}
@@ -58,11 +61,9 @@ class Node {
 	void Node::setPhone(string phone) {
 		this->phone = phone;
 	}
-
-
-//////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main()
 {
-	
+	return 0;
 }
