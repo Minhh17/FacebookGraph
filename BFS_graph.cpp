@@ -4,7 +4,7 @@ using namespace std;
 
 // Khai báo m?t d? th? b?ng m?ng k?
 const int V = 5;
-int adj[V][V] = {{0, 1, 1, 0, 0},
+int edges[V][V] = {{0, 1, 1, 0, 0},
                  {1, 0, 1, 1, 0},
                  {1, 1, 0, 1, 1},
                  {0, 1, 1, 0, 1},
@@ -38,7 +38,8 @@ void bfs1(int start) {
 }
 int main() {
     // In ra ket qua bfs
-    cout << "BFS starting from vertex 3: ";
-    bfs1(3);
+//    cout << "BFS starting from vertex 3: ";
+//    bfs1(3);
+    cout << edges[3][2];
     return 0;
 }
