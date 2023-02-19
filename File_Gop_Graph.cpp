@@ -5,7 +5,7 @@
 using namespace std;
 vector<vector<int>> edges;
 
-class Node {
+class Node {                  // class tao node luu thong tin cua tung nguoi
 	public:
 		Node();
 		Node(string name, int id, string dob, string email, string phone);
@@ -114,24 +114,24 @@ class Graph:Node {
 	public:
 		void addNode(string name,int id, string dob, string email, string phone) {
 			Node *node = new Node(name, id, dob, email, phone);
-			nodes.push_back(*node);
+			nodes.push_back(*node);                                               // ham them 1 node moi ( tao moi 1 node + them node do vao vector nodes + mo rong do thi len 1 )
 			edges.resize(nodes.size()+1);
 		}
 		void addEdge(int fromId, int toId, int weight){
-			edges[fromId][toId] = weight;
+			edges[fromId][toId] = weight;                               // ham them canh giua 2 node
 		}
 		void deleteNode(int id){
-			nodes.erase(nodes.begin()+getIndex(id));
+			nodes.erase(nodes.begin()+getIndex(id));                      // ham xoa mot node (tim theo id) ; di kem voi phuong thuc xoa canh 
 		}
 		void deleteEdge(int id){
 			for (int i=0;i<edges.size();i++){
-				edges[i].erase(edges[i].begin()+getIndex(id));
-			}
+			 	edges[i].erase(edges[i].begin()+getIndex(id));                          // phuong thuc xoa canh trong do thi
+			}  
 			edges.erase(edges.begin()+getIndex(id));
 		}
 		int getIndex(int id){
 			for (int i=0;i<nodes.size();i++){
-				if (id == nodes[i].getId()){
+				if (id == nodes[i].getId()){                                // ham lay index cua nguoi theo id trong vector nodes
 					return i;
 				}
 			}
@@ -142,11 +142,37 @@ class Graph:Node {
 			Node::setFriendList(edges[index]);
 			int count = 0;
 			for(int i=0;i<nodes.size();i++){
-				if (nodes[index].getFriendList()[i] != 0){
+				if (nodes[index].getFriendList()[i] != 0){                     // ham them danh sach ban va dem so ban luon
 					count++;
 				}
 			}
 			Node::setNum(count);
+		}
+		
+		Node maxWeight(int id){
+			int index = Graph::getIndex(id);
+			int max = nodes[index].getFriendList()[0];
+			int maxIndex = 0;
+			for (int i=0; i<nodes.size(); i++){
+				if (max < nodes[index].getFriendList()[i]){                    // ham tim nguoi tuong tac voi minh nhieu nhat
+					max = nodes[index].getFriendList()[i];                    
+					maxIndex = i;
+				}
+			}
+			return nodes[maxIndex];
+		}
+		
+		Node minWeight(int id){
+			int index = Graph::getIndex(id);
+			int min = nodes[index].getFriendList()[0];
+			int minIndex = 0;
+			for (int i=0; i<nodes.size(); i++){
+				if (min > nodes[index].getFriendList()[i]){                    // ham tim nguoi tuong tac voi minh it nhat
+					min = nodes[index].getFriendList()[i];                    
+					minIndex = i;
+				}
+			}
+			return nodes[minIndex];
 		}
 		
 	private:

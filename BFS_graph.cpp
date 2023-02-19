@@ -15,10 +15,9 @@ public:
         adjacencyList.resize(n);
     }
 
-    void addEdge(int u, int v) {
-        adjacencyList[u].push_back(v);
-        adjacencyList[v].push_back(u);
-    }
+    void addEdge(int fromId, int toId, int weight){
+		edges[fromId][toId] = weight;
+	}
 
     void BFS(int startVertex) {
         vector<bool> visited(numVertices, false);
