@@ -1,64 +1,44 @@
 #include <iostream>
-#include <vector>
 #include <queue>
-
 using namespace std;
 
-class Graph {
-private:
-    int numVertices;
-    vector<vector<int>> adjacencyList;
+// Khai báo m?t d? th? b?ng m?ng k?
+const int V = 5;
+int adj[V][V] = {{0, 1, 1, 0, 0},
+                 {1, 0, 1, 1, 0},
+                 {1, 1, 0, 1, 1},
+                 {0, 1, 1, 0, 1},
+                 {0, 0, 1, 1, 0}};
 
-public:
-    Graph(int n) {
-        numNode = nodes.size();
-        adjacencyList.resize(n);
-    }
+// Phuong th?c d? th?c hi?n BFS
+void bfs1(int start) {
+    // Mang bool danh dau nhung dinh da duoc tham
+    bool visited[V] = {false};
+    // queue luu cac dinh da duoc duyet
+    queue<int> q;
+    // Ðua dinh bat dau vao hang doi va danh dau la da tham
+    q.push(start);
+    visited[start] = true;
 
-    void addEdge(int fromId, int toId, int weight){
-		edges[fromId][toId] = weight;
-	}
-
-    void BFS(int startVertex) {
-        vector<bool> visited(numVertices, false);
-        queue<int> q;
-
-        visited[startVertex] = true;
-        q.push(startVertex);
-
-        while (!q.empty()) {
-            int currVertex = q.front();
-            q.pop();
-
-            cout << currVertex << " ";
-
-            for (int adjVertex : adjacencyList[currVertex]) {
-                if (!visited[adjVertex]) {
-                    visited[adjVertex] = true;
-                    q.push(adjVertex);
-                }
+    while (!q.empty()) {
+        // lay dinh dau hang doi
+        int currentNode = q.front();
+        q.pop();
+        
+		cout << currentNode << " "; // xu ly o day
+		
+        // Duyet cac dinh ke cua dinh hien tai va dua vao hang doi
+        for (int i = 0; i < V; i++) {
+            if (edges[currentNode][i] && !visited[i]) {
+                q.push(i);
+                visited[i] = true;
             }
         }
     }
-};
-
+}
 int main() {
-    int n, m;
-    cin >> n >> m;
-
-    Graph g(n);
-
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
-        g.addEdge(u, v);
-    }
-
-    int startVertex;
-    cin >> startVertex;
-
-    g.BFS(startVertex);
-
+    // In ra ket qua bfs
+    cout << "BFS starting from vertex 3: ";
+    bfs1(3);
     return 0;
 }
-
