@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 using namespace std;
-vector<vector<int>> edges;
+vector<vector<int>> edges;        // khai bao ma tran canh toan cuc
 
 class Node {                  // class tao node luu thong tin cua tung nguoi
 	public:
@@ -74,8 +74,8 @@ class Node {                  // class tao node luu thong tin cua tung nguoi
 	void Node::setNum(int numFriend){
 		this->numFriend = numFriend;
 	}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-class Edges {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Edges {                                   // da thoi khong dung
   public:
   	Edges();
     Edges(int node1, int node2, int weight) {
@@ -97,12 +97,7 @@ class Edges {
     	this->weight = weight;
 	}
 	
-	void initialize(int numNodes){      // hàm tao mot do thi trong khong (graph toan 0)
-		edges.resize(numNodes);
-		for (int i=0;i<numNodes;i++){
-			edges[i].resize(numNodes);
-		}	
-	}
+
 
 	private:
 		int node1;
@@ -112,9 +107,12 @@ class Edges {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 class Graph:Node {
 	public:
-		void addNode(string name,int id, string dob, string email, string phone) {
-			Node *node = new Node(name, id, dob, email, phone);
-			nodes.push_back(*node);                                               // ham them 1 node moi ( tao moi 1 node + them node do vao vector nodes + mo rong do thi len 1 )
+		Graph() {}
+		Graph(vector<Node> nodes){
+			this->nodes = nodes;
+		}
+		void addNode(Node node) {
+			nodes.push_back(node);                                               // ham them 1 node moi ( tao moi 1 node + them node do vao vector nodes + mo rong do thi len 1 )
 			edges.resize(nodes.size()+1);
 		}
 		void addEdge(int fromId, int toId, int weight){
@@ -137,7 +135,23 @@ class Graph:Node {
 			}
 		}
 		
-		FriendList(int id){
+		void initialize(int numNodes){      // hàm tao mot do thi trong khong (graph toan 0)
+			edges.resize(numNodes);
+			for (int i=0;i<numNodes;i++){
+				edges[i].resize(numNodes);
+			}	
+		}	
+		
+		void printEdges(vector<vector<int>> edges){
+			for (int i=0;i<edges.size();i++){
+				for (int j=0;j<edges.size();j++){
+					cout << edges[i][j] <<" ";
+				}
+				cout << "\n";
+			}
+		}
+		
+		void FriendList(int id){
 			int index = Graph::getIndex(id);
 			Node::setFriendList(edges[index]);
 			int count = 0;
@@ -148,6 +162,30 @@ class Graph:Node {
 			}
 			Node::setNum(count);
 		}
+		int mostFriend(){
+			int max = nodes[0].getNum();
+			int maxFriend = 0;
+			for (int index=0; index<nodes.size();index++){
+				if (max < nodes[index].getNum()){
+					max = nodes[index].getNum();
+					maxFriend = index;
+				}
+			}
+			return maxFriend;
+		}
+		
+		int leastFriend(){
+			int min = nodes[0].getNum();
+			int minFriend = 0;
+			for (int index=0; index<nodes.size();index++){
+				if (min > nodes[index].getNum()){
+					min = nodes[index].getNum();
+					minFriend = index;
+				}
+			}
+			return minFriend;
+		}
+		
 		
 		Node maxWeight(int id){
 			int index = Graph::getIndex(id);
@@ -175,18 +213,32 @@ class Graph:Node {
 			return nodes[minIndex];
 		}
 		
+		vector<Node> suggestFriend(int id) {
+			// co gang ap dung BFS 
+		}
+		
 	private:
 		vector<Node> nodes;
 	};	
 int main()
 {
-	Node node ;
-	Graph graph;
-	Edges edges;
-	graph.addNode("Minh",17,"1710","minbs","0888");
-	graph.addNode("My",18,"1703","ansn","09380");
-	edges.initialize(2);
-	graph.addEdge(graph.getIndex(17),graph.getIndex(18), 100);
+
+	Node node1("My",18,"1703","ansn","09380");
+	Node node2("Minih",19,"1703","ansn","09380");
+	vector<Node> nodes = {};
+	Graph graph(nodes);
+	graph.addNode(node1);
+	graph.addNode(node2);                          // thiet ke giao dien cmd chuong trinh nua :((
+	graph.initialize(3);
+	
+	graph.printEdges(edges);
+	
+	graph.addEdge(graph.getIndex(18),graph.getIndex(19), 100);
+	graph.addEdge(graph.getIndex(19),graph.getIndex(18), 50);
+	
+	cout <<"\n";
+	
+	graph.printEdges(edges);
 	return 0;
 }
 

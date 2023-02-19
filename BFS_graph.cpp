@@ -11,7 +11,7 @@ private:
 
 public:
     Graph(int n) {
-        numVertices = n;
+        numNode = nodes.size();
         adjacencyList.resize(n);
     }
 
