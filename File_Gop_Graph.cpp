@@ -249,7 +249,12 @@ class Graph:Node {
 		}
 		
 		vector<int> MsuggestFriend(int id){
-			
+			int index = getIndex(id);
+			for (int i=0; i<edges.size();i++){
+				if (edges[index][i] != 0){
+					bfs1(i);
+				}
+			}
 		}
 		
 		vector<Node> suggestFriend(int id) {
