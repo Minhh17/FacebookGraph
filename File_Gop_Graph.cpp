@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
 using namespace std;
 vector<vector<int>> edges;
 
@@ -16,6 +19,10 @@ class Node {
 		void setEmail(string email);
 		string getPhone();
 		void setPhone(string phone);
+		vector<int> getFriendList();
+		void setFriendList(vector<int> friendList);
+		int getNum();
+		void setNum(int numFriend);
 
 	private:
 		string name;
@@ -23,8 +30,8 @@ class Node {
 		string dob;
 		string email;
 		string phone;
-		vector<Node> friendList; 
-		
+		vector<int> friendList; // them mang friendlist bang cach cat tu bang 
+		int numFriend;								
 
 };
 
@@ -43,6 +50,9 @@ class Node {
 	string Node::getDob() {return dob;}
 	string Node::getEmail() {return email;}
 	string Node::getPhone() {return phone;}
+	vector<int> Node::getFriendList() {return friendList;}
+	int Node::getNum() {return numFriend;}
+	
 	void Node::setName(string name) {
 		this->name = name;
 	}
@@ -57,6 +67,12 @@ class Node {
 	}
 	void Node::setPhone(string phone) {
 		this->phone = phone;
+	}
+	void Node::setFriendList(vector<int> friendList){
+		this->friendList = friendList;
+	}
+	void Node::setNum(int numFriend){
+		this->numFriend = numFriend;
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Edges {
@@ -99,6 +115,7 @@ class Graph:Node {
 		void addNode(string name,int id, string dob, string email, string phone) {
 			Node *node = new Node(name, id, dob, email, phone);
 			nodes.push_back(*node);
+			edges.resize(nodes.size()+1);
 		}
 		void addEdge(int fromId, int toId, int weight){
 			edges[fromId][toId] = weight;
@@ -119,6 +136,19 @@ class Graph:Node {
 				}
 			}
 		}
+		
+		FriendList(int id){
+			int index = Graph::getIndex(id);
+			Node::setFriendList(edges[index]);
+			int count = 0;
+			for(int i=0;i<nodes.size();i++){
+				if (nodes[index].getFriendList()[i] != 0){
+					count++;
+				}
+			}
+			Node::setNum(count);
+		}
+		
 	private:
 		vector<Node> nodes;
 	};	
