@@ -21,8 +21,8 @@ int main() {
 //    std::cout << "Element at row 2, column 3 is " << matrix.at(1).at(2) << std::endl;
     printVector(matrix);
     std::cout << "\n";
-	cout << &matrix[1][0];
-	matrix[3].erase(&matrix[3][3]);
+//	cout << &matrix[1][0];
+	cout << matrix[3] <<" mi";
 	for (int i=0;i<matrix.size();i++){
 		matrix[i].erase(matrix[i].begin()+1);
 	}

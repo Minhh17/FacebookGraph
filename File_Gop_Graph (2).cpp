@@ -106,7 +106,7 @@ class Edges {                     // da thoi khong dung
     	int node2;
     	int weight;
 };
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Graph:Node {
 	public:
 		Graph() {}
@@ -118,7 +118,7 @@ class Graph:Node {
 		void addNode(Node node) {
 			nodes.push_back(node);                           // ham them 1 node moi ( tao moi 1 node + them node do vao vector nodes + mo rong do thi len 1 )
 //			edges.resize(nodes.size()+1);
-			initialize(nodes.size()); // oki cx dc
+			initialize(nodes.size()); 
 		}
 		
 		void addEdge(int fromId, int toId, int weight){
@@ -255,10 +255,6 @@ class Graph:Node {
 					bfs1(i);
 				}
 			}
-		}
-		
-		vector<Node> suggestFriend(int id) {
-			 
 		}
 		
 		vector<Node> getNodes()
@@ -428,7 +424,6 @@ int main()
 	
 //	cout << graph.mostFriend() << "\n";
 
-	
 
 //	cout << graph.maxWeight(1).getName() << "\n";
 
