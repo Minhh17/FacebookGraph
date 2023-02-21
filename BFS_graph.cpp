@@ -38,8 +38,8 @@ void bfs1(int start) {
 }
 int main() {
     // In ra ket qua bfs
-//    cout << "BFS starting from vertex 3: ";
-//    bfs1(3);
-    cout << edges[3][2];
+    cout << "BFS starting from vertex 3: ";
+    bfs1(3);
+//    cout << edges[3][2];
     return 0;
 }
